@@ -2,7 +2,6 @@ import pickle
 import pandas as pd
 
 # --- Step 1: Define the Recommendation Function ---
-# (This function remains the same as before)
 def get_content_based_recommendations(title, cosine_sim, df, indices, n=10):
     try:
         idx = indices[title]
@@ -24,15 +23,11 @@ try:
     with open(MODEL_PATH, 'rb') as f:
         loaded_data = pickle.load(f)
     
-    # --- THIS IS THE FIX ---
     # Access the items from the dictionary by their keys.
-    # You might need to change these key names ('cosine_sim_matrix', 'df_clean', 'indices')
-    # to match the exact keys you used when you saved the dictionary.
     
     print("\n--- Inspecting Dictionary Keys ---")
     print(f"Keys found in loaded dictionary: {list(loaded_data.keys())}")
     
-    # --- THIS IS THE FIX ---
     cosine_sim_matrix = loaded_data['similarity_matrix']
     df_clean = loaded_data['df']
     indices = loaded_data['indices']
