@@ -74,7 +74,7 @@ The project follows a modular structure to separate concerns, making it clean an
 
 ### Running the Application
 
-To run the application in **development mode** (with auto-reloader and debugger), set the `FLASK_DEBUG` environment variable to `1`. (this usually automatically set )
+To run the application in **development mode** (with auto-reloader and debugger), set the `FLASK_DEBUG` environment variable to `1`. 
 
 The API will be available at `http://127.0.0.1:5000`.
 
