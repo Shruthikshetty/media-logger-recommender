@@ -5,10 +5,11 @@
 
 import pickle
 import os
+import logging
 
 # build path to the model file
 baseDir = os.path.abspath(os.path.dirname(__file__))
-GAME_MODEL_PATH = os.path.join(baseDir, "..\game_model.pkl")
+GAME_MODEL_PATH = os.path.join(baseDir, '..', 'game_model.pkl')
 
 
 class GameService:
@@ -23,10 +24,10 @@ class GameService:
                 with open(GAME_MODEL_PATH, "rb") as f:
                     cls.model = pickle.load(f)
             except FileNotFoundError:
-                print(f"Error: The file '{GAME_MODEL_PATH}' was not found.")
+                logging.error(f"Error: The file '{GAME_MODEL_PATH}' was not found.")
                 cls.model = None
             except Exception as e:
-                print(f"An error occurred while loading the model: {e}")
+                logging.error(f"An error occurred while loading the model: {e}")
                 cls.model = None
         return cls.model
 
@@ -58,5 +59,5 @@ class GameService:
             return similar_games.to_list()  # return as a list
         
         except Exception as e:
-            print(f"An error occurred while generating recommendations: {e}")
+            logging.error(f"An error occurred while generating recommendations: {e}")
             return []

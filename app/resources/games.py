@@ -1,6 +1,6 @@
 # this file contains all the resource endpoints for games
 
-from flask_restful import Resource, reqparse, marshal
+from flask_restful import Resource, reqparse
 from app.ml.services.game_service import GameService
 
 
