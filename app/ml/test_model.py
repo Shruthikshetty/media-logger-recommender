@@ -16,7 +16,7 @@ def get_content_based_recommendations(title, cosine_sim, df, indices, n=10):
         return f"An unexpected error occurred: {e}"
 
 # --- Step 2: Load Your Saved Data Dictionary ---
-MODEL_PATH = 'game_recommender_model.pkl'
+MODEL_PATH = 'game_recommender-model.pkl'
 print(f"Loading model and data from '{MODEL_PATH}'...")
 
 try:
