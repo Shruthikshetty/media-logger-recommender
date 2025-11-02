@@ -12,7 +12,7 @@ This project provides a RESTful API to generate content-based recommendations fo
 ## Project Structure
 
 The project follows a modular structure to separate concerns, making it clean and scalable.
-
+```txt
 /recommendation-api/
 |
 |-- app/
@@ -39,7 +39,7 @@ The project follows a modular structure to separate concerns, making it clean an
 |-- requirements.txt            # Project dependencies
 |-- run.py                      # Main entry point to start the server
 `-- README.md                   # This file
-
+```
 
 ## Getting Started
 
