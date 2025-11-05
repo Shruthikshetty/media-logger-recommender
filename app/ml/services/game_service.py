@@ -55,7 +55,7 @@ class GameService:
             sim_scores = sim_scores[1 : n + 1]
             game_indices = [i[0] for i in sim_scores]
             # return the top n similar games
-            similar_games = df["title"].iloc[game_indices]
+            similar_games = df["_id"].iloc[game_indices]
             return similar_games.to_list()  # return as a list
         
         except Exception as e:
