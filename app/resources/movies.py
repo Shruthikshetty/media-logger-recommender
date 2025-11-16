@@ -12,7 +12,13 @@ class SimilarMovies(Resource):
         if id is None:
             return {"success": False, "message": "No movie id provided."}, 400
 
-        # predict similar movies
-        similar_movies = MovieService.predictSimilar(id, n=10)
-
-        return {"success": True, "similar_movies": similar_movies}, 200
+        try:
+            # predict similar movies
+            similar_movies = MovieService.predictSimilar(id, n=10)
+            return {"success": True, "similar_movies": similar_movies}, 200
+        
+        except ValueError:
+            return {"success": False, "message": str(e)}, 404
+    
+        except Exception as e:
+            return {"success": False, "message": str(e)}, 500

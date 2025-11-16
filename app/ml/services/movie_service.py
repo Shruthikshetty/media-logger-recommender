@@ -40,7 +40,7 @@ class MovieService:
         model = cls.getModel()
         # if model is not loaded
         if model is None:
-            return []
+            raise RuntimeError("Model is not loaded")
 
         try:
             # get the similar movies and training df from the model
@@ -48,19 +48,21 @@ class MovieService:
             df = model["training_data"]
 
             # clean the input
-            movie_id = movie_id.strip()  
+            movie_id = movie_id.strip()
 
-            # get index 
+            # get index
             idx = df.index.get_loc(movie_id)
 
             # get similarity
             similarities = similarity_matrix[idx]
             # get top n
-            top_indices = similarities.argsort()[::-1][1:n+1]
+            top_indices = similarities.argsort()[::-1][1 : n + 1]
             similar_movies = df.index[top_indices].tolist()
             return similar_movies
 
-
+        except KeyError:
+            raise ValueError(f"Movie id '{movie_id}' not found in training data")
+            
         except Exception as e:
             logging.error(f"An error occurred while generating recommendations: {e}")
-            return []
+            raise Exception(f"An error occurred while generating recommendations: {e}")
