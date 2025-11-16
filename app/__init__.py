@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from config import Config  
 from .resources.games import SimilarGames
+from .resources.movies import SimilarMovies
 
 
 def create_app(config_class=Config): # Use the base Config by default
@@ -15,6 +16,7 @@ def create_app(config_class=Config): # Use the base Config by default
 
     #Add resources to the api
     api.add_resource(SimilarGames, "/similar/games")
+    api.add_resource(SimilarMovies, "/similar/movies/<string:id>")
 
     # define the base route
     @app.route("/")
