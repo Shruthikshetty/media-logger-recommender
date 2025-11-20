@@ -16,9 +16,9 @@ class SimilarMovies(Resource):
             # predict similar movies
             similar_movies = MovieService.predictSimilar(id, n=10)
             return {"success": True, "similar_movies": similar_movies}, 200
-        
-        except ValueError:
+
+        except ValueError as e:
             return {"success": False, "message": str(e)}, 404
-    
+
         except Exception as e:
             return {"success": False, "message": str(e)}, 500
