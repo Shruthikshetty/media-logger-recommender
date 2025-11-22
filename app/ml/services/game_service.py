@@ -9,7 +9,7 @@ import logging
 
 # build path to the model file
 baseDir = os.path.abspath(os.path.dirname(__file__))
-GAME_MODEL_PATH = os.path.join(baseDir, '..', 'game_model.pkl')
+GAME_MODEL_PATH = os.path.join(baseDir, "..", "game_model.pkl")
 
 
 class GameService:
@@ -32,32 +32,41 @@ class GameService:
         return cls.model
 
     @classmethod
-    def predictSimilar(cls, game_title, n=10):
+    def predictSimilar(cls, game_id, n=10):
+        """
+        This will predict similar games to the id provided
+        will return a list of game ids that are similar
+        by default it will return 10 (n=10)
+        """
+        # load the model in case its not already loaded
         model = cls.getModel()
 
         # if model is not loaded
         if model is None:
-            return []
+            raise RuntimeError("Model is not loaded")
 
         # get the similar games
         try:
             # The Cosine Similarity Matrix)
-            cosine_sim = model["similarity_matrix"]
-            # the cleaned dataframe
-            df = model["df"]
-            # The Title-to-Index Mapping
-            indices = model["indices"]
-            # get the index of the game title
-            idx = indices[game_title]
-            # It sorts this list of tuples in descending order based on the similarity score
-            sim_scores = list(enumerate(cosine_sim[idx]))
-            sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-            sim_scores = sim_scores[1 : n + 1]
-            game_indices = [i[0] for i in sim_scores]
-            # return the top n similar games
-            similar_games = df["_id"].iloc[game_indices]
-            return similar_games.to_list()  # return as a list
-        
+            similarity_matrix = model["similarity_matrix"]
+            df = model["training_data"]
+
+            # clean the input
+            game_id = game_id.strip()
+
+            # get index
+            idx = df.index.get_loc(game_id)
+
+            # get similarity
+            similarities = similarity_matrix[idx]
+            # get top n
+            top_indices = similarities.argsort()[::-1][1 : n + 1]
+            similar_games = df.index[top_indices].tolist()
+            return similar_games
+
+        except KeyError:
+            raise ValueError(f"game id '{game_id}' not found in training data")
+
         except Exception as e:
             logging.error(f"An error occurred while generating recommendations: {e}")
-            return []
+            raise Exception(f"An error occurred while generating recommendations: {e}")
