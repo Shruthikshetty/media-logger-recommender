@@ -16,7 +16,7 @@ def create_app(config_class=Config): # Use the base Config by default
     api = Api(app)
 
     #Add resources to the api
-    api.add_resource(SimilarGames, "/similar/games")
+    api.add_resource(SimilarGames, "/similar/games/<string:id>")
     api.add_resource(SimilarMovies, "/similar/movies/<string:id>")
     api.add_resource(SimilarTVShows, "/similar/tv-shows/<string:id>")
 
