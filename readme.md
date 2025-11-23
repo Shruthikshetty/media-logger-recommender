@@ -1,5 +1,9 @@
 # Media Logger Recommendation API
 
+![Python Version](https://img.shields.io/badge/python->=3.8-blue)
+![Flask Version](https://img.shields.io/badge/flask-3.1.2-green)
+![scikit-learn Version](https://img.shields.io/badge/scikit--learn-1.7.2-orange)
+
 This project provides a RESTful API to generate content-based recommendations for various media types, including games, movies, and TV shows. It uses pre-trained machine learning models to find and return similar items based on a given item ID.
 
 ## Features
@@ -40,6 +44,9 @@ The project follows a modular structure to separate concerns, making it clean an
 |-- run.py                      # Main entry point to start the server
 `-- README.md                   # This file
 ```
+
+### Deployment
+    This app is deployed on Hugging Face at <https://huggingface.co/spaces/shruthik77/media-logger-recommender-api>
 
 ## Getting Started
 
