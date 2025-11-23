@@ -46,7 +46,7 @@ The project follows a modular structure to separate concerns, making it clean an
 ```
 
 ### Deployment
-    This app is deployed on Hugging Face at <https://huggingface.co/spaces/shruthik77/media-logger-recommender-api>
+  This app is deployed on Hugging Face at <https://huggingface.co/spaces/shruthik77/media-logger-recommender-api>
 
 ## Getting Started
 
