@@ -1,6 +1,6 @@
 # this file contains all the resource endpoints for movies
 
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
 
 from app.ml.services.tv_show_service import TvShowService
 
@@ -17,9 +17,15 @@ class SimilarTVShows(Resource):
         if id is None:
             return {"success": False, "message": "No tv show id provided."}, 400
 
+        # get n from the request
+        parser = reqparse.RequestParser()
+        parser.add_argument("n", type=int, location="args", default=10)
+        args = parser.parse_args()
+        n = args["n"]
+
         try:
             # predict similar tv shows
-            similar_tv_shows = TvShowService.predictSimilar(id, n=10)
+            similar_tv_shows = TvShowService.predictSimilar(id, n=n)
             return {"success": True, "similar_tv_shows": similar_tv_shows}, 200
 
         except ValueError as e:
