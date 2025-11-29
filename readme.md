@@ -8,14 +8,15 @@ This project provides a RESTful API to generate content-based recommendations fo
 
 ## Features
 
--   **Content-Based Recommendations**: Generates a list of similar items based on content features.
--   **Multiple Media Types**: Supports recommendations for games, movies, and TV shows through dedicated endpoints.
--   **Scalable Architecture**: Built with a modular Flask application factory pattern, making it easy to extend and maintain.
--   **Lightweight**: No database integration required; models and data are loaded into memory from `.pkl` files.
+- **Content-Based Recommendations**: Generates a list of similar items based on content features.
+- **Multiple Media Types**: Supports recommendations for games, movies, and TV shows through dedicated endpoints.
+- **Scalable Architecture**: Built with a modular Flask application factory pattern, making it easy to extend and maintain.
+- **Lightweight**: No database integration required; models and data are loaded into memory from `.pkl` files.
 
 ## Project Structure
 
 The project follows a modular structure to separate concerns, making it clean and scalable.
+
 ```txt
 /recommendation-api/
 |
@@ -46,24 +47,27 @@ The project follows a modular structure to separate concerns, making it clean an
 ```
 
 ### Deployment
+
     This app is deployed on Hugging Face at <https://huggingface.co/spaces/shruthik77/media-logger-recommender-api>
 
 ## Getting Started
 
 ### Prerequisites
 
--   Python 3.8+
--   `pip` for package management
+- Python 3.8+
+- `pip` for package management
 
 ### Installation
 
 1.  **Clone the repository:**
+
     ```
     git clone https://github.com/Shruthikshetty/media-logger-recommender.git
     cd media-logger-recommender
     ```
 
 2.  **Create and activate a virtual environment (recommended):**
+
     ```
     # On Linux/macOS
     python3 -m venv venv
@@ -79,13 +83,17 @@ The project follows a modular structure to separate concerns, making it clean an
     pip install -r requirements.txt
     ```
 
+### setting up env variables
+
+    copy the variables from .env.example file and add all the required values for the app to work
+
 ### Running the Application
 
-To run the application in **development mode** (with auto-reloader and debugger), set the `FLASK_DEBUG` environment variable to `1`. 
+To run the application in **development mode** (with auto-reloader and debugger), set the `FLASK_DEBUG` environment variable to `1`.
+
 ```bash
 set FLASK_DEBUG=1
 flask run
 ```
 
 The API will be available at `http://127.0.0.1:5000`.
-
