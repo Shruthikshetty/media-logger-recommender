@@ -18,7 +18,7 @@ def request_logger(app):
                 "method": request.method,
                 "url": request.url,
                 "ip": request.remote_addr,
-                "headers": dict(request.headers),
+                "requestId": request.headers.get("X-Request-Id"),
                 "body": request.get_json(silent=True) or request.data.decode("utf-8"),
             }
         )
@@ -32,7 +32,7 @@ def request_logger(app):
             "message": f"Outgoing response for: {request.method} {request.url}",
             "method": request.method,
             "statusCode": response.status_code,
-            "headers": dict(request.headers),
+            "requestId": request.headers.get("X-Request-Id"),
             "body": response.get_data(as_text=True),
         }
         if response.status_code >= 400:

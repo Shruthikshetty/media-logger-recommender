@@ -14,19 +14,15 @@ class LokiClient:
 
     def _push(self, level: str, obj):
         ts = str(int(time.time() * 1e9))  # ns timestamp
-        line = json.dumps(
-            {
-                "level": level,
-                **(obj if isinstance(obj, dict) else {"data": obj}),
-            },
-            default=str,
-        )
-
+        msg = obj if isinstance(obj, str) else json.dumps(obj, default=str)
         payload = {
             "streams": [
                 {
-                    "stream": self.labels,
-                    "values": [[ts, line]],
+                    "stream": {
+                        **self.labels,
+                        "level": level,
+                    },
+                    "values": [[ts, msg]],
                 }
             ]
         }
