@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api
-from app.middleware.loggin import request_logger
+from app.middleware.logging import request_logger
 from app.resources.tv_show import SimilarTVShows
 from config import Config
 from .resources.games import SimilarGames
